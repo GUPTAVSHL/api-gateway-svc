@@ -1,0 +1,23 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: APIGATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+        - id: USER_SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user/**
+        - id: DEPARTMENT-SERVICE
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - Path=/department/**
+    config:
+      enabled: true
+      uri: http://localhost:9190
+
+
+
